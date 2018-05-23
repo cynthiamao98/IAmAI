@@ -49,27 +49,25 @@ public class ExamplePersonalityInsights : MonoBehaviour
 	{
 		InitializeCredentials();
 
-		twitter_user = "Oprah"; //timeline.handle;
+		// Find user handle to locate user info
+		timeline = GetComponent<TwitterScraper> ();
+		twitter_user = timeline.handle; //"Oprah";
 		user = twitter_user;
 
 		LogSystem.InstallDefaultReactors();
-		_dataPath = Application.dataPath + "/Watson/Examples/ServiceExamples/TestData/timeline-" + twitter_user + ".json";
+		_dataPath= Application.dataPath + "/Watson/Examples/ServiceExamples/TestData/" + twitter_user + "_timeline.json";
 		_testString = System.IO.File.ReadAllText(_dataPath);
 
 		//  Create credential and instantiate service
 		Credentials credentials = new Credentials(_username, _password, _url);
-
 		_personalityInsights = new PersonalityInsights(credentials);
 		_personalityInsights.VersionDate = _personalityInsightsVersionDate;
-
 
 		Runnable.Run(Examples());
 	}
 
 	private void InitializeCredentials()
 	{
-//		UnityEngine.Debug.Log("INITIALIZING");
-//
 		string filename = Application.dataPath + "/Watson/serviceCredentials/insightsCredentials.txt";
 		UnityEngine.Debug.Log(filename);
 
@@ -89,10 +87,6 @@ public class ExamplePersonalityInsights : MonoBehaviour
 			i++;
 
 		}
-//		UnityEngine.Debug.Log(_username);
-//		UnityEngine.Debug.Log(_password);
-//		UnityEngine.Debug.Log(_url);
-
 	}
 
 

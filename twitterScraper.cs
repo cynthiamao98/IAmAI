@@ -31,12 +31,12 @@ public class TwitterScraper : MonoBehaviour
 
     public void Update()
     {
-		InitCreds ();
-		handle =  ("Oprah");
-		Scrape(handle);
+		    InitCreds ();
+		    handle =  ("Oprah");
+		    Scrape(handle);
 
-		if (IsFinishedScraping()){}
-        	UnityEngine.Debug.Log("Finished Scraping");
+		    if (IsFinishedScraping())
+          UnityEngine.Debug.Log("Finished Scraping");
     }
 
     private void InitCreds()
@@ -111,10 +111,10 @@ public class TwitterScraper : MonoBehaviour
             //parameters["id"] = 1.ToString();
             //StartCoroutine(Twity.Client.Get("trends/place", parameters, CB_GetTrends));
 
-            //Finished["CB_GetUser"] = false;
-            //parameters = new Dictionary<string, string>();
-            //parameters["screen_name"] = handle;
-            //StartCoroutine(Twity.Client.Get("users/show", parameters, CB_GetUser));
+            Finished["CB_GetUser"] = false;
+            parameters = new Dictionary<string, string>();
+            parameters["screen_name"] = handle;
+            StartCoroutine(Twity.Client.Get("users/show", parameters, CB_GetUser));
 
             ScrapingComplete["CB_GetUserTimeline"] = false;
             //ScrapingComplete["CB_GetHashtags"] = false;
@@ -233,7 +233,7 @@ public class TwitterScraper : MonoBehaviour
         else { Debug.Log(response); }
         ScrapingComplete["CB_GetUserTimeline"] = true;
 
-        GetHashtags();
+        // GetHashtags();
     }
 
     void CB_GetFriendsIDs(bool success, string response)
