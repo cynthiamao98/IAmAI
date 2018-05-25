@@ -1,4 +1,8 @@
-﻿using System.Collections;
+/*
+ * This is still under working progress. We are only able to get the username and userid from Facebook Scraping because of the default functionality
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Facebook.Unity;
